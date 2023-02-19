@@ -97,4 +97,22 @@ for (let i = 1; i <= 3; i++) {
 // Mostramos el valor total del carrito
 alert("El valor total del carrito es: $" + carrito);
 
+// Preguntar si el usuario tiene un código de descuento
+let descuento = 0;
+let codigoPromocional = prompt("¿Tiene un código promocional? Ingréselo aquí:");
+
+// Verificar si el código de promoción es válido
+if (codigoPromocional.toLowerCase() === "desc15") {
+    descuento = carrito * 0.15;
+    alert("¡Felicitaciones! Su código promocional ha sido aplicado.");
+} else if (codigoPromocional !== null) {
+    alert("Lo siento, el código promocional que ha ingresado no es válido.");
+}
+
+// Aplicar el descuento al total del carrito
+carrito -= descuento;
+
+// Mostrar el valor final del carrito, incluyendo el descuento aplicado
+alert("El valor total del carrito, incluyendo el descuento aplicado, es: $" + carrito);
+
 

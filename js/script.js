@@ -31,18 +31,13 @@ function noHayStock(producto) {
 function esCantidadValida(mensaje) {
     let cantidad;
     do {
-        cantidad = prompt(mensaje);
-        if (cantidad === null) {
-            // Si el usuario cancela el prompt, salir de la función con un valor nulo
-            return null;
-        }
-        cantidad = parseInt(cantidad);
-        if (isNaN(cantidad) || cantidad <= 0) {
-            alert("Por favor ingresa un número válido y mayor que cero");
-        }
-    } while (isNaN(cantidad) || cantidad <= 0);
-    return cantidad;
-}
+      cantidad = prompt(mensaje);
+      if (cantidad === null || isNaN(cantidad) || cantidad <= 0) {
+        alert("Por favor ingresa un número válido y mayor que cero");
+      }
+    } while (cantidad === null || isNaN(cantidad) || cantidad <= 0);
+    return parseInt(cantidad);
+  }
 
 // Definimos la variable stockDisponible
 let stockDisponible;
@@ -99,7 +94,7 @@ for (let i = 1; i <= 3; i++) {
     }
 }
 
-
 // Mostramos el valor total del carrito
 alert("El valor total del carrito es: $" + carrito);
+
 

@@ -31,13 +31,13 @@ function noHayStock(producto) {
 function esCantidadValida(mensaje) {
     let cantidad;
     do {
-      cantidad = prompt(mensaje);
-      if (cantidad === null || isNaN(cantidad) || cantidad <= 0) {
-        alert("Por favor ingresa un número válido y mayor que cero");
-      }
+        cantidad = prompt(mensaje);
+        if (cantidad === null || isNaN(cantidad) || cantidad <= 0) {
+            alert("Por favor ingresa un número válido y mayor que cero");
+        }
     } while (cantidad === null || isNaN(cantidad) || cantidad <= 0);
     return parseInt(cantidad);
-  }
+}
 
 // Definimos la variable stockDisponible
 let stockDisponible;
@@ -99,14 +99,14 @@ alert("El valor total del carrito es: $" + carrito);
 
 // Preguntar si el usuario tiene un código de descuento
 let descuento = 0;
-let codigoPromocional = prompt("¿Tiene un código promocional? Ingréselo aquí:");
+let codigoPromocional = prompt("¿Tiene un código promocional? Ingréselo aquí (si no tiene uno, deje en blanco):");
 
 // Verificar si el código de promoción es válido
-if (codigoPromocional.toLowerCase() === "desc15") {
+if (codigoPromocional !== null && codigoPromocional.toLowerCase() === "desc15") {
     descuento = carrito * 0.15;
-    alert("¡Felicitaciones! Su código promocional ha sido aplicado.");
-} else if (codigoPromocional !== null) {
-    alert("Lo siento, el código promocional que ha ingresado no es válido.");
+    alert("¡Felicitaciones! Código promocional válido. Se ha aplicado un descuento del 15%.");
+} else if (codigoPromocional !== "") {
+    alert("Código promocional inválido.");
 }
 
 // Aplicar el descuento al total del carrito
@@ -114,5 +114,3 @@ carrito -= descuento;
 
 // Mostrar el valor final del carrito, incluyendo el descuento aplicado
 alert("El valor total del carrito, incluyendo el descuento aplicado, es: $" + carrito);
-
-

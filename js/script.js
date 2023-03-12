@@ -1,98 +1,141 @@
-let aretes = {
-    precio: 20000,
-    stock: 5
-};
-let collares = {
-    precio: 50000,
-    stock: 3
-};
-let prendedores = {
-    precio: 30000,
-    stock: 2
-};
+// Array de objetos con información de los productos
+let productos = [{
+        nombre: "Aretes",
+        precio: 20000,
+        stock: 5
+    },
+    {
+        nombre: "Collares",
+        precio: 50000,
+        stock: 3
+    },
+    {
+        nombre: "Prendedores",
+        precio: 30000,
+        stock: 2
+    }
+];
 
-// Definimos el carrito de compras y su valor inicial
-let carrito = 0;
+let filtroPrecio = prompt("¿Desea filtrar por precio? (S/N)").toUpperCase();
 
-// Función para manejar el caso en que no hay suficiente stock de un producto
-function noHayStock(producto) {
-    alert("Lo siento, no hay suficiente stock de " + producto);
-    var cantidadProductos;
-    do {
-        cantidadProductos = esCantidadValida("Ingresa una cantidad válida de " + producto + " que deseas agregar al carrito, solo quedan " + stockDisponible + " unidades!");
-        if (cantidadProductos > stockDisponible) {
-            alert("Lo siento, no hay suficiente stock de " + producto);
-        }
-    } while (cantidadProductos > stockDisponible);
-    return cantidadProductos;
+while (filtroPrecio !== "S" && filtroPrecio !== "N") {
+    alert("Respuesta inválida. Por favor, introduzca 'S' o 'N'.");
+    filtroPrecio = prompt("¿Desea filtrar por precio? (S/N)").toUpperCase();
+}
+if (filtroPrecio === "S") {
+    let precioMinimo = parseInt(prompt("Ingrese el precio mínimo: "));
+    let precioMaximo = parseInt(prompt("Ingrese el precio máximo: "));
+    let productosFiltrados = productos.filter(producto => producto.precio > precioMinimo && producto.precio < precioMaximo);
+
+    if (productosFiltrados.length === 0) {
+        alert("No hay productos disponibles en el rango de precios especificado.");
+    } else {
+        let listaProductos = productosFiltrados.map(producto => producto.nombre).join("\n");
+        alert("Productos disponibles en el rango de precios especificado:\n" + listaProductos);
+    }
+} else if (filtroPrecio === "N") {
+    alert("Continuando sin filtro de precios...");
 }
 
-// Función para validar la entrada del usuario
+// Función para buscar un producto por su nombre
+function buscarProducto(nombreProducto) {
+    let productoEncontrado = productos.find(producto => producto.nombre.toLowerCase() === nombreProducto.toLowerCase());
+    if (productoEncontrado) {
+        return productoEncontrado;
+    } else {
+        return null;
+    }
+}
+
+// Función para filtrar los productos disponibles
+function filtrarProductos(productos) {
+    let productosDisponibles = [];
+    for (let i = 0; i < productos.length; i++) {
+        if (productos[i].stock > 0) {
+            productosDisponibles.push(productos[i].nombre);
+        }
+    }
+    return productosDisponibles;
+}
+
 function esCantidadValida(mensaje) {
     let cantidad;
     do {
         cantidad = prompt(mensaje);
-        if (cantidad === null || isNaN(cantidad) || cantidad <= 0) {
-            alert("Por favor ingresa un número válido y mayor que cero");
+        if (cantidad === null) {
+            alert("Debes ingresar una cantidad válida");
+            continue;
         }
-    } while (cantidad === null || isNaN(cantidad) || cantidad <= 0);
+        if (isNaN(cantidad) || cantidad < 1) {
+            alert("Por favor ingresa un número válido y mayor que cero");
+        } else {
+            break;
+        }
+    } while (true);
     return parseInt(cantidad);
 }
 
-// Definimos la variable stockDisponible
-let stockDisponible;
+let carrito = 0;
+let productosAgotados = false; // variable de control
 
-// Usando un ciclo for, preguntamos al usuario por la cantidad de cada producto que desea agregar al carrito
-for (let i = 1; i <= 3; i++) {
-    let producto;
-    if (i === 1) {
-        producto = "Aretes";
-    } else if (i === 2) {
-        producto = "Collares";
-    } else if (i === 3) {
-        producto = "Prendedores";
+do {
+    let productosDisponibles = filtrarProductos(productos);
+    if (productosDisponibles.length === 0) { // verificar si no hay productos disponibles
+        alert("Lo siento, todos los productos están agotados.");
+        break;
     }
-    switch (producto) {
-        case "Aretes":
-            stockDisponible = aretes.stock;
-            break;
-        case "Collares":
-            stockDisponible = collares.stock;
-            break;
-        case "Prendedores":
-            stockDisponible = prendedores.stock;
-            break;
-    }
-    cantidadProductos = esCantidadValida("Ingresa la cantidad de " + producto + " que deseas agregar al carrito:");
-    while (cantidadProductos > stockDisponible) {
-        cantidadProductos = noHayStock(producto);
-        switch (producto) {
-            case "Aretes":
-                stockDisponible = aretes.stock;
-                break;
-            case "Collares":
-                stockDisponible = collares.stock;
-                break;
-            case "Prendedores":
-                stockDisponible = prendedores.stock;
-                break;
+    let seleccionProducto;
+    do {
+        seleccionProducto = prompt(
+            "Productos disponibles:\n" +
+            productosDisponibles.join("\n") +
+            "\nIngresa el nombre del producto que deseas agregar al carrito:"
+        ).toLowerCase();
+        if (!buscarProducto(seleccionProducto)) {
+            alert("Producto inválido. Por favor elige uno de los productos disponibles.");
         }
+    } while (!buscarProducto(seleccionProducto));
+
+    let productoSeleccionado = buscarProducto(seleccionProducto);
+    let stockDisponible = productoSeleccionado.stock;
+    if (stockDisponible === 0) {
+        alert("Lo siento, este producto está agotado.");
+        continue;
     }
-    switch (producto) {
-        case "Aretes":
-            carrito += aretes.precio * cantidadProductos;
-            aretes.stock -= cantidadProductos;
-            break;
-        case "Collares":
-            carrito += collares.precio * cantidadProductos;
-            collares.stock -= cantidadProductos;
-            break;
-        case "Prendedores":
-            carrito += prendedores.precio * cantidadProductos;
-            prendedores.stock -= cantidadProductos;
-            break;
+    let cantidadProductos;
+
+    cantidadProductos = esCantidadValida(
+        "Ingresa la cantidad de " + productoSeleccionado.nombre + " que deseas agregar al carrito:"
+    );
+    while (cantidadProductos > stockDisponible) {
+        alert("Lo siento, no hay suficiente stock de " + productoSeleccionado.nombre);
+        cantidadProductos = esCantidadValida(
+            "Ingresa una cantidad válida de " +
+            productoSeleccionado.nombre +
+            " que deseas agregar al carrito, solo quedan " +
+            stockDisponible +
+            " unidades!"
+        );
     }
-}
+    carrito += productoSeleccionado.precio * cantidadProductos;
+    productoSeleccionado.stock -= cantidadProductos;
+
+    // Preguntar si el usuario desea agregar más productos al carrito
+    let agregarOtroProducto;
+    do {
+        agregarOtroProducto = prompt("¿Deseas agregar otro producto al carrito? (S/N)");
+        if (agregarOtroProducto === null) {
+            alert("Por favor ingresa una respuesta válida (S/N)");
+        } else {
+            agregarOtroProducto = agregarOtroProducto.toUpperCase();
+        }
+    } while (agregarOtroProducto !== "S" && agregarOtroProducto !== "N");
+
+    if (agregarOtroProducto === "N") {
+        break;
+    }
+
+} while (true);
 
 // Mostramos el valor total del carrito
 alert("El valor total del carrito es: $" + carrito);

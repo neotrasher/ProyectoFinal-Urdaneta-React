@@ -1,0 +1,51 @@
+.footer{
+        .footer-datos{
+        background-color: $fondoclaro;
+        font-family: Roboto-Regular;
+        padding: 40px;
+        margin: 0;        
+        .rrssIcons-footer{
+            @extend %logostyle;
+        }
+        .footer-menu{
+            > ul{
+                padding-left: 5px;
+            }
+            > ul > li {
+                list-style-type: none;
+                font-size: 14px;
+            }
+            > ul > li > a{
+                text-decoration: none;
+                list-style-type: none;
+                color: $colorletra;
+            }
+        }
+        .footer-contacto{
+            .logoWhatsappFooter{
+                @extend %logostyle 
+            }
+            > a{
+                text-decoration: none;
+                list-style-type: none;
+                color: $colorletra;
+                padding-left: 10px;
+            }
+        } 
+    }
+    .footer-legal{
+        display: flex;
+        flex-direction: column;
+        background-color: $rosadooscuro;
+        font-family: Roboto-Regular;
+        text-align: end;
+        padding: 5px;
+        width: 100%;
+        h5{
+            font-size: 13px;
+        }
+        h6{
+            font-size: 10px;
+        }
+    }
+}

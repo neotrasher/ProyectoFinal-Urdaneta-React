@@ -1,0 +1,20 @@
+.pagination{
+    font-family: Roboto-Regular;
+}
+.navFiltro{
+    a{
+        font-family: Roboto-Regular;  
+        color: $colorletra;  
+    }
+    .breadcrumb{
+        color: $colorletra;
+        text-decoration: none;
+    }
+    .filtroProducto{
+        font-family: Roboto-Regular;
+        color: $colorletra;
+        padding: 2px;
+        border-radius: 5px;
+        background-color: $fondoclaro;
+    }
+}  

@@ -1,0 +1,37 @@
+.carousel{
+    .btn{
+        font-weight: bold;
+        position: absolute;
+        right: 30px;
+        bottom: 8px;
+        z-index: 1;
+        @include btn($colorletra,$fondoclaro);        
+        &:hover{
+            background-color: $fondoclaro;
+            color: $colorletra;
+            font-weight: bold;
+            border: solid;
+            border-width: 0.5px;
+        }
+    }
+}
+@media (max-width: 648px) {
+    .carousel{
+        .btn{
+            display: none;
+        }
+    }
+}
+.cards{
+    .btn{
+        font-weight: bold;
+        @include btn($colorletra,$fondoclaro);        
+        &:hover{
+            background-color: $fondoclaro;
+            color: $colorletra;
+            font-weight: bold;
+            border: solid;
+            border-width: 0.5px;
+        }
+    }
+}

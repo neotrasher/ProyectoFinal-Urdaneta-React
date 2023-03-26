@@ -1,0 +1,4 @@
+@mixin btn($fondo,$letra){
+    background-color: $fondo;
+    color: $letra;
+}

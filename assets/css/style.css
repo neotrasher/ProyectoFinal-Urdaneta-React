@@ -1,0 +1,374 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: roboto-regular;
+  src: url(../fonts/Roboto/Roboto-Regular.ttf);
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 32px;
+  overflow-x: hidden;
+}
+.cards .card-img-top:hover {
+  box-shadow: 0px 0px 6px rgb(24, 3, 3);
+  transform: scale(1.35);
+  transition: 0.6s;
+}
+
+.footer .footer-datos .footer-contacto .logoWhatsappFooter, .footer .footer-datos .rrssIcons-footer, .navbarInfo .logosNavbar {
+  width: 24px;
+}
+
+nav {
+  font-family: roboto-regular;
+}
+
+.navbarInfo {
+  background-color: #BD95B7;
+  padding: 8px;
+  font-size: small;
+}
+.navbar {
+  background-color: #E0B2DA;
+  font-weight: bold;
+}
+.navbar .maguslogo {
+  width: 100px;
+}
+.navbar .dropdown-menu {
+  background-color: aliceblue;
+}
+
+.navbarItem > li {
+  border-radius: 5px;
+}
+.navbarItem > ul {
+  height: 80px;
+  padding-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: Roboto-Regular;
+  list-style: none;
+}
+.navbarItem > ul > li > a {
+  text-decoration: none;
+  color: #4A4848;
+  font-size: 19px;
+  font-weight: lighter;
+}
+.navbarItem > ul > li > a:hover {
+  color: black;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+@media (max-width: 648px) {
+  .navbarItem > ul > li > a {
+    font-size: 16px;
+  }
+}
+.cards .card-title {
+  font-weight: bold;
+}
+
+.footer .footer-datos {
+  background-color: aliceblue;
+  font-family: Roboto-Regular;
+  padding: 40px;
+  margin: 0;
+}
+.footer .footer-datos .footer-menu > ul {
+  padding-left: 5px;
+}
+.footer .footer-datos .footer-menu > ul > li {
+  list-style-type: none;
+  font-size: 14px;
+}
+.footer .footer-datos .footer-menu > ul > li > a {
+  text-decoration: none;
+  list-style-type: none;
+  color: #4A4848;
+}
+.footer .footer-datos .footer-contacto > a {
+  text-decoration: none;
+  list-style-type: none;
+  color: #4A4848;
+  padding-left: 10px;
+}
+.footer .footer-legal {
+  display: flex;
+  flex-direction: column;
+  background-color: #BD95B7;
+  font-family: Roboto-Regular;
+  text-align: end;
+  padding: 5px;
+  width: 100%;
+}
+.footer .footer-legal h5 {
+  font-size: 13px;
+}
+.footer .footer-legal h6 {
+  font-size: 10px;
+}
+
+.accordion {
+  font-family: Roboto-Regular;
+  margin-top: 40px;
+}
+.accordion .accordion-body {
+  background-color: aliceblue;
+  text-align: justify;
+}
+
+.acercaDeMi {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 0px;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 60px;
+  min-height: calc(100vh - 300px);
+}
+.acercaDeMi > img {
+  height: 425px;
+  padding: 30px;
+  margin-top: 5px;
+}
+.acercaDeMi .acercaDeMi-info {
+  color: #4A4848;
+  font-family: Roboto-Regular;
+  padding: 30px;
+  font-size: 14px;
+  text-align: justify;
+  width: 950px;
+  margin-top: 40px;
+}
+
+.pagination {
+  font-family: Roboto-Regular;
+}
+
+.navFiltro a {
+  font-family: Roboto-Regular;
+  color: #4A4848;
+}
+.navFiltro .breadcrumb {
+  color: #4A4848;
+  text-decoration: none;
+}
+.navFiltro .filtroProducto {
+  font-family: Roboto-Regular;
+  color: #4A4848;
+  padding: 2px;
+  border-radius: 5px;
+  background-color: aliceblue;
+}
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.video-container a {
+  text-decoration: none;
+  color: #4A4848;
+}
+.video-container .video-card {
+  width: 75%;
+  margin: 10px;
+  box-shadow: 0px 0px 10px #ccc;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 80px;
+  background-color: #E0B2DA;
+}
+.video-container .video-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 20px #4A4848;
+}
+.video-container video {
+  width: 100%;
+  border: none;
+}
+.video-container h3 {
+  text-align: center;
+  margin: 25px;
+  text-decoration: none;
+}
+
+.contacto {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 300px;
+  padding: 1px;
+}
+.contacto .textContacto {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+.contacto .logoWhatsappContacto {
+  width: 56px;
+}
+.contacto .numeroTelefono {
+  text-decoration: none;
+  color: #4A4848;
+  font-size: 20px;
+}
+
+.contactoMain {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+.contactoMain .taggbox {
+  width: 65vh;
+  padding: 20px;
+  margin-left: 200px;
+  margin-top: 30px;
+}
+@media (max-width: 1020px) {
+  .contactoMain .taggbox {
+    display: none;
+  }
+}
+
+.formulario {
+  color: #4A4848;
+  font-family: Roboto-Regular;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  border-color: #4A4848;
+  margin-top: 50px;
+}
+.formulario .form-group {
+  padding: 5px;
+}
+.formulario .form-group .form-textarea {
+  width: 360px;
+  border-radius: 10px;
+  padding: 5px;
+  border-color: #4A4848;
+  border: solid;
+  background-color: aliceblue;
+}
+.formulario .form-group .form-input {
+  width: 360px;
+  height: 45px;
+  border-radius: 10px;
+  padding: 5px;
+  border-color: #4A4848;
+  border: solid;
+  background-color: aliceblue;
+}
+.formulario .form-buttongroup {
+  padding: 5px;
+}
+.formulario .form-buttongroup .form-button {
+  width: 360px;
+  height: 45px;
+  border-radius: 25px;
+  background-color: #E0B2DA;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.carousel .btn {
+  font-weight: bold;
+  position: absolute;
+  right: 30px;
+  bottom: 8px;
+  z-index: 1;
+  background-color: #4A4848;
+  color: aliceblue;
+}
+.carousel .btn:hover {
+  background-color: aliceblue;
+  color: #4A4848;
+  font-weight: bold;
+  border: solid;
+  border-width: 0.5px;
+}
+
+@media (max-width: 648px) {
+  .carousel .btn {
+    display: none;
+  }
+}
+.cards .btn {
+  font-weight: bold;
+  background-color: #4A4848;
+  color: aliceblue;
+}
+.cards .btn:hover {
+  background-color: aliceblue;
+  color: #4A4848;
+  font-weight: bold;
+  border: solid;
+  border-width: 0.5px;
+}
+
+.cart-summary {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  width: 300px;
+  z-index: 1;
+  display: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cart-summary .card {
+  border: none;
+}
+
+.cart-summary .card-header {
+  font-size: 1.2rem;
+}
+
+.cart-summary .list-group-item {
+  font-size: 0.9rem;
+}
+
+.cart-summary .card-footer {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.cart-badge {
+  position: absolute;
+  top: 5px;
+  right: 40px;
+}
+
+#cart-items {
+  list-style: none;
+  padding: 15px;
+}
+
+@media (max-width: 991.98px) {
+  .cart-summary {
+    width: 250px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .cart-summary {
+    width: 200px;
+  }
+}

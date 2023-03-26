@@ -124,7 +124,7 @@ function updateCartSummary() {
 
     // Agregar botones "+" y "-" para incrementar y disminuir la cantidad de productos
     const btnDecrease = document.createElement('button');
-    btnDecrease.classList.add('btn', 'btn-secondary', 'btn-sm');
+    btnDecrease.classList.add('btn', 'btn-secondary', 'btn-sm',);
     btnDecrease.textContent = '-';
     btnDecrease.style.margin = '3px';
     btnDecrease.addEventListener('click', () => {
@@ -148,6 +148,7 @@ function updateCartSummary() {
       </span>`;
     li.lastElementChild.appendChild(btnDecrease);
     li.lastElementChild.appendChild(btnIncrease);
+    li.style.fontSize = "15px";
 
     cartItemsList.appendChild(li);
   });

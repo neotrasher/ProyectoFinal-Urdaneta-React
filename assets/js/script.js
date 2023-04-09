@@ -308,14 +308,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Actualizar el contador de productos en el carrito
   updateCartCount();
 
-// Mostrar el resumen del carrito al hacer "hover" o "touchstart" sobre el icono del carrito
+// Mostrar y ocultar el resumen del carrito al hacer "hover" o "touchstart" sobre el icono del carrito
 cartIcon.addEventListener('mouseover', showCartSummary);
 cartIcon.addEventListener('touchstart', showCartSummary);
+cartIcon.addEventListener('mouseout', hideCartSummary);
+cartIcon.addEventListener('touchend', hideCartSummary);
 
 // Función para mostrar el resumen del carrito
 function showCartSummary() {
   updateCartSummary();
   cartSummary.style.display = 'block';
+}
+function hideCartSummary() {
+  cartSummary.style.display = 'none';
 }
 
   // Agregar event listener para cerrar carrito al hacer clic fuera de él

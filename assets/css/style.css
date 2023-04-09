@@ -327,7 +327,7 @@ nav {
   position: absolute;
   top: 70px;
   right: 20px;
-  width: 300px;
+  width: 400px;
   z-index: 1;
   display: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -363,12 +363,17 @@ nav {
 
 @media (max-width: 991.98px) {
   .cart-summary {
-    width: 250px;
+    width: 350px;
   }
 }
 
 @media (max-width: 767.98px) {
   .cart-summary {
-    width: 200px;
+    width: 335px;
   }
 }
+
+.swal2-popup {
+  font-family: "Roboto-Regular", sans-serif !important;
+}
+

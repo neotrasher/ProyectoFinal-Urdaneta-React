@@ -1,0 +1,51 @@
+[
+    {
+        "nombre": "In Love",
+        "precio": "25500 $",
+        "imagen": "./assets/img/arete1.png",
+        "fechaCreacion": "15/01/23"
+    },
+    {
+        "nombre": "Armonía Triangular",
+        "precio": "35500 $",
+        "imagen": "./assets/img/arete2.png",
+        "fechaCreacion": "24/01/23"
+    },
+    {
+        "nombre": "Pasión al Cuadrado",
+        "precio": "30000 $",
+        "imagen": "./assets/img/arete3.png",
+        "fechaCreacion": "24/01/22"
+    },
+    {
+        "nombre": "Peyote Circular",
+        "precio": "52000 $",
+        "imagen": "./assets/img/arete4.png",
+        "fechaCreacion": "24/08/21"
+
+    },
+    {
+        "nombre": "Set Rosa",
+        "precio": "32000 $",
+        "imagen": "./assets/img/pulseras.png",
+        "fechaCreacion": "10/04/21"
+    },
+    {
+        "nombre": "Friends",
+        "precio": "28000 $",
+        "imagen": "./assets/img/friends.png",
+        "fechaCreacion": "24/01/23"
+    },
+    {
+        "nombre": "Azucenas",
+        "precio": "45000 $",
+        "imagen": "./assets/img/doradas.png",
+        "fechaCreacion": "12/01/23"
+    },
+    {
+        "nombre": "Set Azul",
+        "precio": "38000 $",
+        "imagen": "./assets/img/azules.png",
+        "fechaCreacion": "13/03/23"
+    }
+]

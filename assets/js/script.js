@@ -308,11 +308,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Actualizar el contador de productos en el carrito
   updateCartCount();
 
-  // Mostrar el resumen del carrito al hacer hover sobre el icono del carrito
-  cartIcon.addEventListener('mouseover', () => {
-    updateCartSummary();
-    cartSummary.style.display = 'block';
-  });
+// Mostrar el resumen del carrito al hacer "hover" o "touchstart" sobre el icono del carrito
+cartIcon.addEventListener('mouseover', showCartSummary);
+cartIcon.addEventListener('touchstart', showCartSummary);
+
+// Función para mostrar el resumen del carrito
+function showCartSummary() {
+  updateCartSummary();
+  cartSummary.style.display = 'block';
+}
 
   // Agregar event listener para cerrar carrito al hacer clic fuera de él
   document.addEventListener('click', function (event) {
@@ -411,8 +415,6 @@ checkoutButton.addEventListener('click', () => {
 //       </div>
 //     `;
 //     productosContainer.innerHTML += card;
-
-    
 //   });
 // };
 

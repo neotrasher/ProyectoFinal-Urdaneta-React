@@ -311,7 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // Mostrar y ocultar el resumen del carrito al hacer "hover" o "touchstart" sobre el icono del carrito
 cartIcon.addEventListener('mouseover', showCartSummary);
 cartIcon.addEventListener('touchstart', showCartSummary);
-cartIcon.addEventListener('mouseout', hideCartSummary);
 cartIcon.addEventListener('touchend', hideCartSummary);
 
 // Función para mostrar el resumen del carrito

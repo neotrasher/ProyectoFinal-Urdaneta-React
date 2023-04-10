@@ -107,12 +107,12 @@
   <main>
     <section class="navFiltro d-flex flex-row justify-content-center mt-5 justify-content-md-around">
       <div aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="./index.html">Inicio</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Productos</li>
+        <ol class="breadcrumb ">
+          <li class="breadcrumb-item d-none d-sm-none d-md-block"><a href="./index.html">Inicio</a></li>
+          <li class="breadcrumb-item d-none d-sm-none d-md-block active" aria-current="page">Productos</li>
         </ol>
       </div>
-      <div class="filtro d-none d-sm-none d-md-block">
+      <div class="filtro d-md-block">
         <label class="filtrarPor">Filtrar por</label>
         <select class="filtroProducto" name="filtro">
           <option value="price-ascending">Precio: Menor a Mayor</option>
@@ -125,7 +125,6 @@
         </select>
       </div>
     </section>
-
     <section class="cards mb-5">
       <div class="card m-3 align-items-center shadow p-3 mb-5 bg-body rounded" data-aos="fade-right"
         data-aos-duration="1500" style="width: 18rem;">

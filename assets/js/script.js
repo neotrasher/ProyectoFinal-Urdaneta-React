@@ -302,36 +302,40 @@ function updateProductQuantity(product) {
 
 document.addEventListener("DOMContentLoaded", () => {
   // Obtener el icono del carrito y el contenedor del resumen del carrito
-  const cartIcon = document.getElementById('cart-icon');
   const cartSummary = document.getElementById('cart-summary');
+  const cartIcon = document.getElementById('cart-icon');
 
   // Actualizar el contador de productos en el carrito
   updateCartCount();
 
-// Mostrar y ocultar el resumen del carrito al hacer "hover" o "touchstart" sobre el icono del carrito
-cartIcon.addEventListener('mouseover', showCartSummary);
-cartIcon.addEventListener('touchstart', showCartSummary);
-cartIcon.addEventListener('touchend', hideCartSummary);
+  // Mostrar y ocultar el resumen del carrito al hacer "hover" o "click" sobre el icono del carrito
+  cartIcon.addEventListener('mouseover', showCartSummary);
+  cartIcon.addEventListener('click', toggleCartSummary);
 
-// Función para mostrar el resumen del carrito
-function showCartSummary() {
-  updateCartSummary();
-  cartSummary.style.display = 'block';
-}
-function hideCartSummary() {
-  cartSummary.style.display = 'none';
-}
+  // Función para mostrar el resumen del carrito
+  function showCartSummary() {
+    updateCartSummary();
+    cartSummary.style.display = 'block';
+  }
+
+  // Función para alternar la visibilidad del resumen del carrito
+  function toggleCartSummary() {
+    if (cartSummary.style.display === 'block') {
+      hideCartSummary();
+    } else {
+      showCartSummary();
+    }
+  }
+
+  function hideCartSummary() {
+    cartSummary.style.display = 'none';
+  }
 
   // Agregar event listener para cerrar carrito al hacer clic fuera de él
   document.addEventListener('click', function (event) {
-    const cartSummary = document.getElementById('cart-summary');
     const targetElement = event.target;
-
-    if (!cartSummary.contains(targetElement)) {
-      cartSummary.classList.remove('show');
-    }
-    if (!cartSummary.contains(event.target)) {
-      cartSummary.style.display = 'none';
+    if (!cartIcon.contains(targetElement) && !cartSummary.contains(targetElement)) {
+      hideCartSummary();
     }
   });
 });

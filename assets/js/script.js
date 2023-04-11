@@ -445,3 +445,38 @@ checkoutButton.addEventListener('click', () => {
     });
   }
 });
+// Agrega un evento de escucha al botón de búsqueda
+document.getElementById('searchButton').addEventListener('click', () => {
+  event.preventDefault();
+  const searchTerm = document.getElementById('searchInput').value; // Obtén el término de búsqueda ingresado por el usuario
+  buscarProductos(searchTerm); // Llama a la función buscarProductos con el término de búsqueda
+});
+
+// Función para buscar productos
+const buscarProductos = (term) => {
+  cargarProductos()
+    .then(productos => {
+      // Filtra los productos que coincidan con el término de búsqueda
+      const productosFiltrados = productos.filter(producto => producto.categoria.toLowerCase().includes(term.toLowerCase()));
+      if (productosFiltrados.length === 0) {
+        // Si no se encuentran resultados, mostrar alerta con SweetAlert2
+        Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000
+        }).fire({
+          icon: 'info',
+          iconColor: '#BD95B7',
+          title: 'Sin resultados',
+          text: 'No se encontraron productos que coincidan con la búsqueda',
+        });
+        // Renderizar todos los productos nuevamente
+        renderizarProductos(productos);
+      } else {
+        // Si se encuentran resultados, renderizar los productos filtrados
+        renderizarProductos(productosFiltrados);
+      }
+    })
+    .catch(error => console.error(error));
+};

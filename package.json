@@ -1,6 +1,6 @@
 {
   "name": "magusbylili-app",
-  "private": true,
+  "private": false,
   "homepage": "https://neotrasher.github.io/preentrega1-urdaneta-react",
   "version": "0.0.0",
   "type": "module",

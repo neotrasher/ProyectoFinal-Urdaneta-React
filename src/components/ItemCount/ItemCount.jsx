@@ -20,9 +20,9 @@ const ItemCount = ({ stock, initial, onAddToCart }) => {
     return (
         <div>
             <p className="card-title text-center ">Unidades: {count}</p>
-            <button onClick={handleDecrement} className="btn btn-dark text-center mx-2">-</button>
-            <button onClick={() => onAddToCart(count)} disabled={!stock} className="btn btn-dark text-center mx-2">Agregar al carrito</button>
-            <button onClick={handleIncrement} className="btn btn-dark text-center mx-2">+</button>
+            <button onClick={handleDecrement} className="btn btn-dark text-center btn-sm btn-lg mx-1">-</button>
+            <button onClick={() => onAddToCart(count)} disabled={!stock} className="btn btn-dark text-center btn-sm btn-lg mx-1">Agregar al carrito</button>
+            <button onClick={handleIncrement} className="btn btn-dark text-center  btn-sm btn-lg mx-1">+</button>
         </div>
     );
 };

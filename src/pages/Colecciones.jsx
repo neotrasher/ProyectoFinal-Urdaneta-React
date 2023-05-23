@@ -22,19 +22,19 @@ function Colecciones() {
                     <div className="video-card">
                     <video onMouseEnter={event => event.target.play()} onMouseLeave={event => { event.target.pause(); event.target.currentTime = 0; }} className="videoColeccion1" src={VideoPrincesas} loop muted></video>
                         <div className="coleccion">
-                            <a href=""><h3>Pequeñas Princesas</h3></a>
+                            <Link to="/productos"><h3>Pequeñas Princesas</h3></Link>
                         </div>
                     </div>
                     <div className="video-card">
                     <video onMouseEnter={event => event.target.play()} onMouseLeave={event => { event.target.pause(); event.target.currentTime = 0; }} className="videoColeccion1" src={VideoGeometria} loop muted></video>
                         <div className="coleccion1">
-                            <a href=""><h3>Geometria Vibrante</h3></a>
+                            <Link to="/productos"><h3>Geometria Vibrante</h3></Link>
                         </div>
                     </div>
                     <div className="video-card">
                     <video onMouseEnter={event => event.target.play()} onMouseLeave={event => { event.target.pause(); event.target.currentTime = 0; }} className="videoColeccion1" src={VideoAretes} loop muted></video>
                         <div className="coleccion1">
-                            <a href=""><h3>Boho-chic</h3></a>
+                            <Link to="/productos"><h3>Boho-chic</h3></Link>
                         </div>
                     </div>
                 </section>

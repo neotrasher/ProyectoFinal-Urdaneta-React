@@ -5,7 +5,6 @@ import Portada1Image from '../assets/img/portada.png';
 import Portada2Image from '../assets/img/portada2.png';
 import Portada3Image from '../assets/img/portada3.png';
 import 'react-multi-carousel/lib/styles.css';
-import ItemListContainer from '../components/ItemListContainer/ItemListContainer';
 import AcercaDeMi from '../components/AcercaDeMi/AcercaDeMi';
 import { motion } from 'framer-motion';
 import TopSellingProducts from '../components/TopSellingProducts/TopSellingProducts';

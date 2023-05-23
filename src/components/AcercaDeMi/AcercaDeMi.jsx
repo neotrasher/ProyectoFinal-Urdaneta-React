@@ -1,5 +1,5 @@
 import React from 'react';
-import MagusbyLiliImagen from '../../assets/img/magusbylili.png';
+import MagusbyLiliImagen from '/img/magusbylili.png';
 import './AcercaDeMi.css';
 
 function AcercaDeMi() {

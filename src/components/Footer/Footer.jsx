@@ -1,7 +1,7 @@
 import React from 'react';
-import whatsappImage from '../../assets/img/whatsapp.png';
-import instagramImage from '../../assets/img/instagram.png';
-import facebookImage from '../../assets/img/facebook.png';
+import whatsappImage from '/img/whatsapp.png';
+import instagramImage from '/img/instagram.png';
+import facebookImage from '/img/facebook.png';
 import { Link } from 'react-router-dom';
 
 function Footer() {

@@ -1,5 +1,5 @@
 import React from "react";
-import whatsappImage from '../assets/img/whatsapp.png';
+import whatsappImage from '/img/whatsapp.png';
 import './Contacto.css'
 
 function Contacto() {

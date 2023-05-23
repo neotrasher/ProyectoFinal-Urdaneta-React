@@ -1,8 +1,8 @@
 import React from "react";
 import './Colecciones.css';
-import VideoPrincesas from '../assets/video/princesas.mp4';
-import VideoGeometria from '../assets/video/geometria.mp4';
-import VideoAretes from '../assets/video/aretes.mp4';
+import VideoPrincesas from '/video/princesas.mp4';
+import VideoGeometria from '/video/geometria.mp4';
+import VideoAretes from '/video/aretes.mp4';
 import { Link } from "react-router-dom";
 
 

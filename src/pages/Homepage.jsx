@@ -1,9 +1,9 @@
 import React from 'react'
 import './Homepage.css'
 import Carousel from 'react-multi-carousel';
-import Portada1Image from '../assets/img/portada.png';
-import Portada2Image from '../assets/img/portada2.png';
-import Portada3Image from '../assets/img/portada3.png';
+import Portada1Image from '/img/portada.png';
+import Portada2Image from '/img/portada2.png';
+import Portada3Image from '/img/portada3.png';
 import 'react-multi-carousel/lib/styles.css';
 import AcercaDeMi from '../components/AcercaDeMi/AcercaDeMi';
 import { motion } from 'framer-motion';

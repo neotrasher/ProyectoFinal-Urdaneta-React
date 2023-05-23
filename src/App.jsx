@@ -14,11 +14,11 @@ function App() {
     return (
         <BrowserRouter>
             <NavBar
-                instagramUrl="/src/assets/img/instagram.png"
-                facebookUrl="/src//assets/img/facebook.png"
-                whatsappUrl="/src/assets/img/whatsapp.png"
-                userUrl="/src/assets/img/cuenta.png"
-                magusLogo="/src/assets/img/maguslogo.png"
+                instagramUrl="/img/instagram.png"
+                facebookUrl="/img/facebook.png"
+                whatsappUrl="/img/whatsapp.png"
+                userUrl="/img/cuenta.png"
+                magusLogo="/img/maguslogo.png"
             />
             <Routes>
                 <Route path='/' element={<Homepage  />} />

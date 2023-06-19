@@ -10,10 +10,10 @@ const ItemDetail = ({ id, nombre, precio, imagen, disponible, fechaCreacion, cat
 
     const handleOnAdd = (quantity) => {
         setQuantityAdded(quantity);
-        const item = { id, nombre, precio, imagen};
+        const item = { id, nombre, precio, imagen };
         addItem(item, quantity);
     };
-    
+
     const showCheckoutButton = quantityAdded > 0;
 
     return (
@@ -23,13 +23,24 @@ const ItemDetail = ({ id, nombre, precio, imagen, disponible, fechaCreacion, cat
                 <h5>{nombre}</h5>
                 <h6>Precio: {precio}</h6>
                 <p>Disponible: {disponible ? 'Sí' : 'No'}</p>
-                {
-                    showCheckoutButton ? (
-                        <Link to="/cart" className="btn ">Finalizar Compra</Link>
-                    ) : (
-                        <ItemCount initial={1} stock={stock} onAddToCart={handleOnAdd} />
-                    )
-                }
+                {!showCheckoutButton && (
+                    <ItemCount initial={1} stock={stock} onAddToCart={handleOnAdd} />
+                )}
+                {showCheckoutButton && (
+                    <div>
+                        <div className="checkout-buttons">
+                            <Link to="/cart" className="btn">Finalizar Compra</Link>
+                        </div>
+                        <div>
+                            <Link to="/productos" className="btn mt-3">Continuar Comprando</Link>
+                        </div>
+                    </div>
+                )}
+                {!showCheckoutButton && (
+                    <div className="continue-shopping">
+                        <Link to="/productos" className="btn mt-3">Continuar Comprando</Link>
+                    </div>
+                )}
             </div>
         </div>
     );

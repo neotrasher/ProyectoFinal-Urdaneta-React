@@ -175,7 +175,13 @@ const Cart = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 removeItem(itemId);
-                Swal.fire('Eliminado', 'El producto ha sido eliminado del carrito', 'success');
+                Swal.fire({
+                    title: 'Eliminado',
+                    text: 'El producto ha sido eliminado del carrito',
+                    icon: 'success',
+                    confirmButtonColor: '#4A4848',
+                    iconColor: '#BD95B7',
+                });
             }
         });
     };

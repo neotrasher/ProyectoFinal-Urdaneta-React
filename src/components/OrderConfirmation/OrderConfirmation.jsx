@@ -38,6 +38,7 @@ const OrderConfirmation = () => {
                 state,
                 discountCode,
                 products: cartItems,
+                date: new Date(),
             });
 
             console.log('Orden creada con ID:', docRef.id);

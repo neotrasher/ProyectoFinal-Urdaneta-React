@@ -34,7 +34,7 @@ const Navbar = (props) => {
                         <Link to="">
                             <img className="logosNavbar me-3" src={props.userUrl} alt="usuario" />
                         </Link>
-                        <CartWidget cartUrl="/img/cart.png" />
+                        <CartWidget />
                     </div>
                 </nav>
             </header>

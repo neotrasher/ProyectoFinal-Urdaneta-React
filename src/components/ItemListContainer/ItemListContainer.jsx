@@ -1,24 +1,33 @@
-import ItemList from '../ItemList/ItemList'
-import { useEffect, useState } from "react";
-import { getProducts, productDetailsByCat } from "../../asyncMock";
+import ItemList from '../ItemList/ItemList';
+import { useEffect, useState } from 'react';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../services/firebase/firebaseConfig';
 import { useParams } from 'react-router-dom';
 
 function ItemListContainer(props) {
-    const [products, setProducts] = useState([])
-    const { productCat } = useParams()
+    const [products, setProducts] = useState([]);
+    const { productCat } = useParams();
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                let response;
-                if (productCat) {
-                    response = await productDetailsByCat(productCat);
-                } else {
-                    response = await getProducts();
-                }
-                console.log("Response:", response);
+                const productsCollection = collection(db, 'products');
+                let q;
 
-                setProducts(response);
+                if (productCat) {
+                    q = query(productsCollection, where('categoria', '==', productCat));
+                } else {
+                    q = query(productsCollection);
+                }
+
+                const querySnapshot = await getDocs(q);
+
+                const productsData = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+
+                setProducts(productsData);
             } catch (error) {
                 console.error(error);
             }
@@ -28,7 +37,7 @@ function ItemListContainer(props) {
     }, [productCat]);
 
     return (
-        <div className="mt-5"  style={{ textAlign: "center" }}>
+        <div className="mt-5" style={{ textAlign: 'center' }}>
             <h2 className="text-center">{props.greeting}</h2>
             <ItemList products={products} />
         </div>
@@ -36,6 +45,7 @@ function ItemListContainer(props) {
 }
 
 export default ItemListContainer;
+
 
 
 

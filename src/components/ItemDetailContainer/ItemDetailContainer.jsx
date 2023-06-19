@@ -1,24 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { productDetails } from '../../asyncMock';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../services/firebase/firebaseConfig';
 import ItemDetail from '../ItemDetail/ItemDetail';
-import { useParams } from 'react-router-dom';
-import { Hearts } from 'react-loader-spinner'
-import './ItemDetailContainer.css'
+import { useParams, useNavigate  } from 'react-router-dom';
+import { Hearts } from 'react-loader-spinner';
+import './ItemDetailContainer.css';
+import Swal from 'sweetalert2';
 
 const ItemDetailContainer = () => {
-    const [products, setProducts] = useState(null);
+    const [product, setProduct] = useState(null);
     const [showSpinner, setShowSpinner] = useState(true);
     const { itemId } = useParams();
-    
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await productDetails(itemId);
-                setProducts(response);
+                const docRef = doc(db, 'products', itemId);
+                const docSnapshot = await getDoc(docRef);
+
+                if (docSnapshot.exists()) {
+                    setProduct({ id: docSnapshot.id, ...docSnapshot.data() });
+                } else {
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Ooops...',
+                      text: "Producto no existe",
+                      confirmButtonColor: '#4A4848',
+                      iconColor: '#BD95B7',
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        navigate('/');
+                      }
+                    });
+                    throw new Error("Dato no encontrado");
+                  }
+
                 setTimeout(() => {
                     setShowSpinner(false);
-                }, 500);
+                }, 450);
             } catch (error) {
                 console.error(error);
             }
@@ -31,21 +51,17 @@ const ItemDetailContainer = () => {
         return (
             <div className="spinner-container">
                 <div className="spinner-wrapper">
-                    <Hearts
-                        color="#BD95B7"
-                        ariaLabel="hearts-loading"
-                        visible={true}
-                    />
+                    <Hearts color="#BD95B7" ariaLabel="hearts-loading" visible={true} />
                 </div>
             </div>
         );
     }
 
     return (
-        <div className='cards p-5 align-items-center'>
-            <ItemDetail {...products} />
+        <div className="cards p-5 align-items-center">
+            {product && <ItemDetail {...product} />}
         </div>
-    )
-}
+    );
+};
 
 export default ItemDetailContainer;

@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 
 const OrderConfirmation = () => {
     const [email, setEmail] = useState('');
+    const [confirmEmail, setConfirmEmail] = useState('');
+    const [emailMismatch, setEmailMismatch] = useState(false);
     const [cardNumber, setCardNumber] = useState('');
     const [expiration, setExpiration] = useState('');
     const [cvv, setCvv] = useState('');
@@ -18,13 +20,41 @@ const OrderConfirmation = () => {
     const navigate = useNavigate();
     const { totalPrice, clearCart, cartItems } = useContext(CartContext);
 
-    const handleInputChange = (event, setValue) => {
-        setValue(event.target.value);
+    const handleInputChange = (event, setValue, fieldType) => {
+        const inputValue = event.target.value;
+        let formattedValue = inputValue;
+
+        if (fieldType === 'letters') {
+            formattedValue = inputValue.replace(/[^a-zA-Z\s]/g, '');
+        } else if (fieldType === 'numbers') {
+            formattedValue = inputValue.replace(/\D/g, '');
+        }
+
+        setValue(formattedValue);
+    };
+
+    const handleConfirmEmailBlur = () => {
+        setEmailMismatch(email !== confirmEmail);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const db = getFirestore();
+
+        if (emailMismatch) {
+            return;
+        }
+
+        if (email !== confirmEmail) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Los emails ingresados no coinciden. Por favor, verifica tu email.',
+                confirmButtonColor: '#4A4848',
+                iconColor: '#BD95B7',
+            });
+            return;
+        }
 
         try {
             const docRef = await addDoc(collection(db, 'orders'), {
@@ -56,6 +86,7 @@ const OrderConfirmation = () => {
             });
 
             setEmail('');
+            setConfirmEmail('');
             setCardNumber('');
             setExpiration('');
             setCvv('');
@@ -69,6 +100,34 @@ const OrderConfirmation = () => {
         }
     };
 
+    const handleCardNumberChange = (event) => {
+        const input = event.target.value;
+        const formattedValue = input.replace(/\D/g, '').slice(0, 16);
+        const groups = formattedValue.match(/.{1,4}/g);
+
+        if (groups) {
+            const formattedGroups = groups.join(' ');
+            setCardNumber(formattedGroups);
+        } else {
+            setCardNumber(formattedValue);
+        }
+    };
+
+    const handleExpirationChange = (event) => {
+        const input = event.target.value;
+        const formattedValue = input
+            .replace(/\D/g, '')
+            .slice(0, 4)
+            .replace(/(\d{2})(\d{2})/, '$1/$2');
+
+        setExpiration(formattedValue);
+    };
+
+    const validateCVV = (cvv) => {
+        const cleanedValue = cvv.replace(/\D/g, '');
+        const formattedValue = cleanedValue.slice(0, 3);
+        return formattedValue;
+    };
 
     return (
         <div className="container">
@@ -78,7 +137,7 @@ const OrderConfirmation = () => {
                     <p>Completa tu compra proporcionando los detalles de pago</p>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <div className="input-text">
+                    <div className={`input-text ${emailMismatch ? 'mismatch' : ''}`}>
                         <input
                             type="text"
                             placeholder="luke@skywalker.com"
@@ -88,24 +147,40 @@ const OrderConfirmation = () => {
                         />
                         <span>Email</span>
                     </div>
+                    <div className={`input-text ${emailMismatch ? 'mismatch' : ''}`}>
+                        <input
+                            type="text"
+                            placeholder="Confirmar Email"
+                            value={confirmEmail}
+                            onChange={(e) => handleInputChange(e, setConfirmEmail)}
+                            onBlur={handleConfirmEmailBlur}
+                            required
+                        />
+                        <span>Confirmar Email</span>
+                        {emailMismatch && (
+                            <div className="error-message">
+                                Los correos no coinciden
+                            </div>
+                        )}
+                    </div>
                     <div className="input-text">
                         <input
                             type="text"
                             placeholder="0000 0000 0000 0000"
                             value={cardNumber}
-                            onChange={(e) => handleInputChange(e, setCardNumber)}
+                            onChange={handleCardNumberChange}
                             data-slots="0"
                             data-accept="\d"
                             required
                         />
-                        <span>Numero de tarjeta</span>
+                        <span>Número de tarjeta</span>
                     </div>
                     <div className="input-text-cvv">
                         <input
                             type="text"
-                            placeholder="mm/aa"
+                            placeholder="MM/AA"
                             value={expiration}
-                            onChange={(e) => handleInputChange(e, setExpiration)}
+                            onChange={handleExpirationChange}
                             data-slots="my"
                             required
                         />
@@ -115,10 +190,10 @@ const OrderConfirmation = () => {
                             type="text"
                             placeholder="000"
                             value={cvv}
-                            onChange={(e) => handleInputChange(e, setCvv)}
+                            onChange={(e) => handleInputChange(e, setCvv, 'numbers')}
                             data-slots="0"
                             data-accept="\d"
-                            size="3"
+                            maxLength={3}
                             required
                         />
                     </div>
@@ -127,19 +202,20 @@ const OrderConfirmation = () => {
                             type="text"
                             placeholder="Nombre y Apellidos"
                             value={cardHolder}
-                            onChange={(e) => handleInputChange(e, setCardHolder)}
+                            onChange={(e) => handleInputChange(e, setCardHolder, 'letters')}
+                            pattern="[a-zA-Z\s]+"
                             required
                         />
                         <span>Tarjetahabiente</span>
                     </div>
                     <div className="billing">
-                        <span>Direccion de Pago</span>
+                        <span>Dirección de Pago</span>
                         <select
                             value={country}
                             onChange={(e) => handleInputChange(e, setCountry)}
                             required
                         >
-                            <option>Seleccione Pais</option>
+                            <option>Seleccione País</option>
                             <option>United States</option>
                             <option>India</option>
                             <option>England</option>
@@ -154,9 +230,10 @@ const OrderConfirmation = () => {
                             <div className="zip">
                                 <input
                                     type="text"
-                                    placeholder="Codigo Postal"
+                                    placeholder="Código Postal"
                                     value={zip}
-                                    onChange={(e) => handleInputChange(e, setZip)}
+                                    onChange={(e) => handleInputChange(e, setZip, 'numbers')}
+                                    pattern="\d+"
                                     required
                                 />
                             </div>
@@ -187,12 +264,12 @@ const OrderConfirmation = () => {
                             value={discountCode}
                             onChange={(e) => handleInputChange(e, setDiscountCode)}
                         />
-                        <span>Discount code</span>
+                        <span>Código de descuento</span>
                     </div>
                     <div className="summary">
                         <div className="text-data">
                             <p>Subtotal</p>
-                            <p>Discount</p>
+                            <p>Descuento</p>
                             <h5>Total</h5>
                         </div>
                         <div className="numerical-data">
@@ -210,8 +287,8 @@ const OrderConfirmation = () => {
                     <p>Los pagos están seguros y encriptados. (test)</p>
                 </div>
                 <div className="last">
-                    <a href="#"> TyC </a>
-                    <a href="#"> Privacidad </a>
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Privacidad</a>
                 </div>
             </div>
         </div>

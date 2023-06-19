@@ -61,23 +61,29 @@ ul {
 .cart_list {
     border: solid 1px #e8e8e8;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
-    background-color: #fff
+    background-color: #fff;
+    padding: 0px;
 }
 
 .cart_item {
     width: 100%;
-    padding: 15px;
-    padding-right: 46px
+    padding: 25px;
 }
 
 .cart_item_image {
-    width: 133px;
+    width: 100px;
     height: 133px;
-    float: left
+    float: left;
+}
+
+.cart_item_image:hover {
+    transform: scale(1.25);
+    transition: 0.6s;
 }
 
 .cart_item_image img {
-    max-width: 60%
+    max-width: 100%;
+    border-radius: 5px;
 }
 
 .cart_item_info {
@@ -98,7 +104,9 @@ ul {
 
 .cart_item_text {
     font-size: 18px;
-    margin-top: 35px
+    margin-top: 15px;
+    text-decoration: none;
+    color: #4A4848;
 }
 
 .cart_item_text span {
@@ -114,7 +122,7 @@ ul {
     transform: translateY(4px)
 }
 
-.cart_item_price {
+.cart_item_price .cart_item_price1 {
     text-align: right
 }
 
@@ -166,12 +174,12 @@ ul {
     padding-right: 35px;
     outline: none;
     cursor: pointer;
-    margin-right: 26px
+    margin-top: 26px;
 }
 
 .cart_button_clear:hover {
-    border-color: #0e8ce4;
-    color: #0e8ce4
+    border-color: #4A4848;
+    color: #4A4848;
 }
 
 .cart_button_checkout {
@@ -185,7 +193,9 @@ ul {
     padding-right: 35px;
     outline: none;
     cursor: pointer;
-    vertical-align: top
+    vertical-align: top;
+    margin-top: 26px;
+    margin-left: 26px;
 }
 
 .cart_item_price_wrapper {
@@ -195,7 +205,7 @@ ul {
 
 .cart_item_remove {
     margin-left: 10px;
-    margin-top: 3.6rem;
+    margin-top: 2.5rem;
 }
 
 .cart_item_remove_icon {
@@ -203,4 +213,27 @@ ul {
     color: #BD95B7;
     font-size: 1.2rem;
     margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .cart_item_price1 {
+        display: none;
+    }
+
+    .cart_item_text {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .cart_item_name .cart_item_quantity {
+        margin: 8px;
+    }
+
+    .cart_item_title {
+        text-align: center;
+        margin-left: 5px;
+    }
+    .cart_item {
+        padding: 16px;
+    }
 }
